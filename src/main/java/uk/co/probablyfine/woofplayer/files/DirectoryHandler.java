@@ -41,7 +41,6 @@ public class DirectoryHandler {
 		fileList = new ArrayList<File>();
 
 		for (File i : Arrays.asList(file.listFiles())) {
-			System.out.println(i.getAbsolutePath());
 			if (i.isDirectory()) {
 				log.debug("loadFiles - Directory found, processing");
 				loadFiles(i);
@@ -54,8 +53,6 @@ public class DirectoryHandler {
 				continue;
 			}
 		}
-		
-
 	}
 	
 	public Collection<MusicFile> getPlaylist() {

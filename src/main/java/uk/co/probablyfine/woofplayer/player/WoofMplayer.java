@@ -40,6 +40,14 @@ public class WoofMplayer implements MusicPlayer {
 						return;
 					}
 					
+					if (file.getMetaData().containsKey("artist") && file.getMetaData().containsKey("title")) {
+						log.info("Now Playing : {} - {}", file.getMetaData().get("artist"), file.getMetaData().get("title"));
+					} else {
+						log.info("Now Playing : {}", file.getFile().getAbsolutePath());
+					}
+					
+					
+					
 					BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 					BufferedReader error = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 
@@ -47,7 +55,7 @@ public class WoofMplayer implements MusicPlayer {
 					
 		            try {
 						while ((s = input.readLine()) != null) {
-						    log.info("playTrack - {}", s);
+						    log.debug("playTrack - {}", s);
 					}
 						
 					} catch (IOException e) {

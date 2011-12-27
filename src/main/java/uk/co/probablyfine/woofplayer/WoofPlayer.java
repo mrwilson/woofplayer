@@ -44,7 +44,7 @@ public class WoofPlayer {
 		
 		File file = new File(directory);
 		
-		log.error("startPlayer - {}",file.getAbsoluteFile());
+		log.info("startPlayer - {}",file.getAbsoluteFile());
 		
 		try {
 			handler.loadFiles(file);
