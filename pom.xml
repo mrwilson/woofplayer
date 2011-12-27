@@ -26,15 +26,16 @@
 	      </configuration>
 	    </plugin>
 	  </plugins>
-		<testResources>
-	      <testResource>
-	        <directory>src/test/config</directory>
-	        <includes>
-	          <include>log4j.xml</include>
-	        </includes>
-	      </testResource>
-	    </testResources>
-	</build>
+   <resources>
+      <resource>
+         <directory>
+   			/src/test/config</directory>
+         <includes>
+            <include>log4j.xml</include>
+         </includes>
+      </resource>
+    </resources>
+  </build>
 
 
   <properties>

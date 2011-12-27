@@ -17,7 +17,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class WoofQueue implements MusicQueue<MusicFile> {
+public class WoofQueue implements MusicQueue {
 
 	private final Queue<MusicFile> queue = new LinkedList<MusicFile>();
 	
@@ -49,7 +49,7 @@ public class WoofQueue implements MusicQueue<MusicFile> {
 
 	public MusicFile getNextSong() {
 		log.debug("getNextSong - Retrieving song from queue");
-		MusicFile file = queue.poll();
+		MusicFile file = queue.remove();
 		queue.add(file);
 		return file;
 	}

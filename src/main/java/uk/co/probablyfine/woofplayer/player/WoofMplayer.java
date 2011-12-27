@@ -14,12 +14,12 @@ import com.google.inject.Inject;
 
 public class WoofMplayer implements MusicPlayer {
 
-	private MusicQueue<MusicFile> queue;
+	private MusicQueue queue;
 	private Thread playerThread;
 	private Logger log = LoggerFactory.getLogger(WoofMplayer.class);
 	
 	@Inject
-	public WoofMplayer(MusicQueue<MusicFile> queue) {
+	public WoofMplayer(MusicQueue queue) {
 		this.queue = queue;
 	}
 	
@@ -32,12 +32,11 @@ public class WoofMplayer implements MusicPlayer {
 				
 			private Process p;
 			public void run() {
-
 					try {
-						p = Runtime.getRuntime().exec("mplayer "+file.getMetaData().get("location"));
+						p = Runtime.getRuntime().exec(new String[] {"mplayer", file.getFile().getAbsolutePath()});
 					} catch (IOException e) {
 						log.error("play - Cannot play current file, skipping");
-						log.error("play - Exception : {}");
+						log.error("play - Exception : {}", e);
 						return;
 					}
 					
@@ -71,7 +70,11 @@ public class WoofMplayer implements MusicPlayer {
 			}); 
 			
 			playerThread.start();
-			
+			try {
+				playerThread.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
 		}
 	}

@@ -2,12 +2,14 @@ package uk.co.probablyfine.woofplayer.queue;
 
 import java.util.Collection;
 
-public interface MusicQueue<E> {
+import uk.co.probablyfine.woofplayer.files.MusicFile;
+
+public interface MusicQueue {
 
 	public int filesLeft();
 	
-	public E getNextSong();
+	public MusicFile getNextSong();
 
-	public void queueFiles(Collection<E> mfColl);
+	public void queueFiles(Collection<MusicFile> mfColl);
 	
 }

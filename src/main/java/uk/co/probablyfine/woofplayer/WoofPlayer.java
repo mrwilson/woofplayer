@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uk.co.probablyfine.woofplayer.files.DirectoryHandler;
-import uk.co.probablyfine.woofplayer.files.MusicFile;
 import uk.co.probablyfine.woofplayer.player.MusicPlayer;
 import uk.co.probablyfine.woofplayer.queue.MusicQueue;
 
@@ -47,7 +46,6 @@ public class WoofPlayer {
 		
 		log.error("startPlayer - {}",file.getAbsoluteFile());
 		
-		
 		try {
 			handler.loadFiles(file);
 		} catch (RuntimeException e) {
@@ -57,7 +55,7 @@ public class WoofPlayer {
 			return;
 		}
 		
-		MusicQueue<MusicFile> queue = injector.getInstance(MusicQueue.class);
+		MusicQueue queue = injector.getInstance(MusicQueue.class);
 		queue.queueFiles(handler.getPlaylist());
 		
 		MusicPlayer player = injector.getInstance(MusicPlayer.class);
@@ -66,8 +64,6 @@ public class WoofPlayer {
 	}
 
 	private void processArgs(String[] args) {
-		
-		log.debug("HERE!");
 		
 		Options options = new Options();
 		
